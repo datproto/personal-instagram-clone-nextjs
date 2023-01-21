@@ -2,33 +2,24 @@ import React, {useEffect, useState} from 'react'
 import Post from '@/components/Post'
 
 import {faker} from '@faker-js/faker'
+import {collection, onSnapshot, orderBy, query} from '@firebase/firestore'
+import {db} from '@/firebase'
 
 function Posts(props) {
 
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    const posts = [...Array(20)].map((_, i) => ({
-      id: i,
-      user: {
-        username: faker.internet.userName(),
-        avatar: faker.image.avatar()
-      },
-      post: {
-        title: faker.lorem.words(20),
-        image: faker.image.imageUrl(),
-        content: faker.lorem.lines(5)
-      }
-    }))
-
-    setPosts(posts)
-  }, [])
+    return onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), snapshot => {
+      setPosts(snapshot.docs)
+    })
+  }, [db])
 
   return (
     <div>
       {posts.map(p => (
-        <Post key={p.id} id={p.id} username={p.user.username} avatar={p.user.avatar} postTitle={p.post.title}
-              postImg={p.post.image} postContent={p.post.content}/>
+        <Post key={p.id} id={p.id} username={p.data().username} avatar={p.data().profileImg} postTitle={p.data().caption}
+              postImg={p.data().image} postContent='Random'/>
       ))}
     </div>
   )
