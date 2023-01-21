@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Image from 'next/image'
 
@@ -12,11 +11,13 @@ import {
   Bars3Icon
 } from '@heroicons/react/24/outline'
 import {HomeIcon} from '@heroicons/react/24/solid'
-import Home from "@/pages";
+import {signIn, signOut, useSession} from 'next-auth/react'
 
 Header.propTypes = {};
 
-function Header(props) {
+function Header() {
+  const {data: session} = useSession()
+
   return (
     <div className={'shadow-sm border-b bg-white sticky top-0 z-50'}>
       <div className={'flex items-center justify-between bg-white max-w-3xl xl:max-w-6xl mx-5 lg:mx-auto'}>
@@ -59,17 +60,28 @@ function Header(props) {
           <HomeIcon className={'navBtn'}/>
           <Bars3Icon className={'w-10 md:hidden cursor-pointer'}/>
 
-          <div className={'relative navBtn'}>
-            <PaperAirplaneIcon className={'navBtn'}/>
-            <div
-              className="absolute -top-1 -right-2 text-sx w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">3
-            </div>
-          </div>
-          <PlusCircleIcon className={'navBtn'}/>
-          <UserGroupIcon className={'navBtn'}/>
-          <HeartIcon className={'navBtn'}/>
+          {session ? (
+              <>
+                <div className={'relative navBtn'}>
+                  <PaperAirplaneIcon className={'navBtn'}/>
+                  <div
+                    className="absolute -top-1 -right-2 text-sx w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">3
+                  </div>
+                </div>
+                <PlusCircleIcon className={'navBtn'}/>
+                <UserGroupIcon className={'navBtn'}/>
+                <HeartIcon className={'navBtn'}/>
 
-          <img src='https://links.papareact.com/3ke' alt="" className={'h-10 rounded-full cursor-pointer'}/>
+                <img
+                  onClick={() => signOut()}
+                  src={session.user?.image ? session.user.image : 'https://ui-avatars.com/api/?background=0D8ABC&color=fff'}
+                  alt=''
+                  className={'h-10 rounded-full cursor-pointer'}/>
+              </>
+            ) : (
+              <button onClick={() => signIn()}>Sign In</button>
+            )
+          }
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={'bg-gray-50 h-screen'}>
+      <div className={'bg-gray-50 min-h-screen'}>
         {/* Header */}
         <Header></Header>
 
