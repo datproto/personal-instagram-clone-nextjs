@@ -13,7 +13,7 @@ interface CustomProviderType {
   }
 }
 
-function signIn<CustomProviderType>({providers}) {
+function signIn({providers}: CustomProviderType) {
   return (
     <>
       <Header/>
