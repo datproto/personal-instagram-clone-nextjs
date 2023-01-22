@@ -43,8 +43,6 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
   const [likes, setLikes] = useState<QueryDocumentSnapshot[]>([])
   const [hasLiked, setHasLiked] = useState(false)
 
-  console.log(session)
-
   useEffect(() => onSnapshot(
     query(
       collection(
