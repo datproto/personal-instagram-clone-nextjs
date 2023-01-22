@@ -1,8 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import {faker} from '@faker-js/faker'
 
+interface SuggestionsType {
+  id: number
+  user: {
+    username: string
+    avatar: string
+  },
+  company: string
+}
 function Suggestions() {
-  const [suggestions, setSuggestions] = useState([])
+  const [suggestions, setSuggestions] = useState<SuggestionsType[]>([])
 
   useEffect(() => {
     const suggestions = [...Array(5)].map((_, i) => (
