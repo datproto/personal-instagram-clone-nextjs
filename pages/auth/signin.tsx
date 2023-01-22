@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import Image from 'next/image'
 import {OAuthProviderType, ProviderType} from 'next-auth/providers'
 
-function signIn({providers}: OAuthProviderType) {
+function signIn({providers}: any) {
   return (
     <>
       <Header/>
