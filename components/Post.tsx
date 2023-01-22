@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {MouseEvent, useEffect, useState} from 'react'
 
 import {
   BookmarkIcon,
@@ -79,7 +79,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
     }
   }
 
-  const sentCmt = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const sentCmt = async (e: MouseEvent) => {
     e.preventDefault()
 
     const cmtToSend = cmt
