@@ -18,7 +18,7 @@ function Modal() {
   const filePickerRef = useRef(null)
   const captionRef = useRef(null)
   const [loading, setLoading] = useState(false)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState<any | null>( null)
 
   const uploadPost = async () => {
     if (loading) return
@@ -31,9 +31,9 @@ function Modal() {
     // TODO 4: Get a download URL from db storage and update the original post with image
 
     const docRef = await addDoc(collection(db, 'posts'), {
-      username: session.user.username,
+      username: session?.user && session.user.username,
       caption: captionRef.current.value,
-      profileImg: session.user.image,
+      profileImg: session?.user && session.user.image,
       timestamp: serverTimestamp()
     })
 
