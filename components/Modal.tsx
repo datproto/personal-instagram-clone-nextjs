@@ -1,4 +1,4 @@
-import React, {Fragment, useRef, useState} from 'react'
+import React, {Fragment, MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {modalState} from '@/atoms/modelAtom'
 
@@ -16,7 +16,8 @@ function Modal() {
   const {data: session} = useSession()
   const [open, setOpen] = useRecoilState(modalState)
   const filePickerRef = useRef(null)
-  const captionRef = useRef('')
+  const captionRef = useRef(null) as MutableRefObject<HTMLInputElement>
+  const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState<any | null>( null)
 
@@ -36,8 +37,6 @@ function Modal() {
       profileImg: session?.user && session.user.image,
       timestamp: serverTimestamp()
     })
-
-    console.log('New Doc with ID', docRef.id)
 
     const imageRef = ref(storage, `posts/${docRef.id}`)
 
