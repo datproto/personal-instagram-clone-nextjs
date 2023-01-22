@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {faker} from '@faker-js/faker'
+import Image from 'next/image'
 
 interface SuggestionsType {
   id: number
@@ -36,7 +37,7 @@ function Suggestions() {
 
       {suggestions.map(p => (
         <div key={p.id} className={'flex items-center justify-between mt-3'}>
-          <img src={p.user.avatar} alt="avatar" className={'h-10 w-10 rounded-full p-[2px]'}/>
+          <Image src={p.user.avatar} alt="avatar" height={50} width={50} className={'h-10 w-10 object-fit rounded-full p-[2px]'}/>
 
           <div className={'flex-1 ml-4'}>
             <h2 className={'font-semibold text-sm'}>{p.user.username}</h2>
