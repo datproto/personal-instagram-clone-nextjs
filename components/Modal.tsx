@@ -19,7 +19,7 @@ function Modal() {
   const captionRef = useRef<HTMLInputElement | null>(null)
   const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<any | null>( null)
+  const [selectedFile, setSelectedFile] = useState<string | null>( null)
 
   const uploadPost = async () => {
     if (loading) return
@@ -58,8 +58,10 @@ function Modal() {
       reader.readAsDataURL(e.target.files?.[0])
     }
 
-    reader.onload = (readerEvent) => {
-      setSelectedFile(readerEvent.target.result)
+    reader.onload = (readerEvent: any) => {
+      if (readerEvent.target?.result) {
+        setSelectedFile(readerEvent.target.result as string);
+      }
     }
   }
 
