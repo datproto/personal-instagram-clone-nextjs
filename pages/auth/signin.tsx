@@ -1,9 +1,9 @@
 import {getProviders, signIn as signIntoProvider} from 'next-auth/react'
 import Header from '@/components/Header'
 import Image from 'next/image'
-import {ProviderType} from 'next-auth/providers'
+import {OAuthProviderType, ProviderType} from 'next-auth/providers'
 
-function signIn({providers}) {
+function signIn({providers}: OAuthProviderType) {
   return (
     <>
       <Header/>
