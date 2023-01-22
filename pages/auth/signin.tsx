@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import Image from 'next/image'
 import {ProviderType} from 'next-auth/providers'
 
-function signIn({providers}: ProviderType) {
+function signIn({providers}) {
   return (
     <>
       <Header/>
@@ -33,7 +33,7 @@ function signIn({providers}: ProviderType) {
 }
 
 export async function getServerSideProps() {
-  const providers = await getProviders()
+  const providers = await getProviders<ProviderType>()
 
   return {
     props: {
