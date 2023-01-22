@@ -79,7 +79,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
     }
   }
 
-  const sentCmt = async (e) => {
+  const sentCmt = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
     const cmtToSend = cmt
