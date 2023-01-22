@@ -17,7 +17,6 @@ function Modal() {
   const [open, setOpen] = useRecoilState(modalState)
   const filePickerRef = useRef<HTMLInputElement | null>(null)
   const captionRef = useRef<HTMLInputElement | null>(null)
-  const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState<string>('')
 

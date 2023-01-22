@@ -40,8 +40,10 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
   const {data: session} = useSession()
   const [cmt, setCmt] = useState('')
   const [cmts, setCmts] = useState<QueryDocumentSnapshot[]>([])
-  const [likes, setLikes] = useState<QueryDocumentSnapshot[]>([])
+  const [likes, setLikes] = useState([])
   const [hasLiked, setHasLiked] = useState(false)
+
+  console.log(session)
 
   useEffect(() => onSnapshot(
     query(
@@ -65,7 +67,9 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
 
   const likePost = async() => {
     if (hasLiked) {
-      await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid))
+      if ('user' in session) {
+        await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid))
+      }
     } else {
       if ('user' in session) {
         await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
@@ -81,12 +85,15 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
     const cmtToSend = cmt
     setCmt('')
 
-    await addDoc(collection(db, 'posts', id, 'comments'), {
-      comment: cmtToSend,
-      username: session.user.username,
-      userImage: session.user.image,
-      timestamp: serverTimestamp()
-    })
+    if ('user' in session) {
+      await addDoc(collection(db, 'posts', id, 'comments'),
+        {
+          comment: cmtToSend,
+          username: session.user.username,
+          userImage: session.user.image,
+          timestamp: serverTimestamp()
+        })
+    }
   }
 
   return (
