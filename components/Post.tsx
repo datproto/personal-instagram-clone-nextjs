@@ -40,7 +40,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
   const {data: session} = useSession()
   const [cmt, setCmt] = useState('')
   const [cmts, setCmts] = useState<QueryDocumentSnapshot[]>([])
-  const [likes, setLikes] = useState([])
+  const [likes, setLikes] = useState<QueryDocumentSnapshot[]>([])
   const [hasLiked, setHasLiked] = useState(false)
 
   useEffect(() => onSnapshot(
