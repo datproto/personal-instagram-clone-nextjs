@@ -3,8 +3,17 @@ import Header from '@/components/Header'
 import Image from 'next/image'
 import {OAuthProviderType, ProviderType} from 'next-auth/providers'
 
-function signIn<ProviderType>({providers}) {
+interface CustomProviderType {
+  providers: {
+    name: string
+    id: string
+    callbackUrl: string
+    signinUrl: string
+    type: string
+  }
+}
 
+function signIn<CustomProviderType>({providers}) {
   return (
     <>
       <Header/>
