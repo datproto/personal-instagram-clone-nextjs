@@ -5,7 +5,7 @@ import MiniProfile from '@/components/MiniProfile'
 import Suggestions from '@/components/Suggestions'
 import {useSession} from 'next-auth/react'
 
-function Feed(props) {
+function Feed() {
   const {data: session} = useSession()
 
   return (

@@ -2,6 +2,8 @@ import React, {Fragment, useRef, useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {modalState} from '@/atoms/modelAtom'
 
+import Image from 'next/image'
+
 import {Dialog, Transition} from '@headlessui/react'
 import {CameraIcon} from '@heroicons/react/24/solid'
 
@@ -103,9 +105,11 @@ function Modal(props) {
               <div className={''}>
 
                 {selectedFile ? (
-                  <img
+                  <Image
                     src={selectedFile}
                     onClick={() => setSelectedFile(null)}
+                    height={720}
+                    width={1024}
                     alt=''
                     className={'w-full object-contain cursor-pointer'}
                   />

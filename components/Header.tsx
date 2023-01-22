@@ -35,6 +35,7 @@ function Header() {
             width={200}
             height={200}
             className={'object-contain'}
+            priority={true}
           />
         </div>
 
@@ -45,6 +46,7 @@ function Header() {
             width={200}
             height={200}
             className={'object-contain'}
+            priority={true}
           />
         </div>
 
@@ -78,11 +80,13 @@ function Header() {
                 <UserGroupIcon className={'navBtn'}/>
                 <HeartIcon className={'navBtn'}/>
 
-                <img
+                <Image
                   onClick={() => signOut()}
                   src={session.user?.image ? session.user.image : 'https://ui-avatars.com/api/?background=0D8ABC&color=fff'}
                   alt=''
-                  className={'h-10 rounded-full cursor-pointer'}/>
+                  height={50}
+                  width={50}
+                  className={'h-10 w-10 rounded-full cursor-pointer'}/>
               </>
             ) : (
               <button onClick={() => signIn()}>Sign In</button>

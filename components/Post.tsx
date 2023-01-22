@@ -25,6 +25,7 @@ import {
 } from '@firebase/firestore'
 import {db} from '@/firebase'
 import Moment from 'react-moment'
+import Image from 'next/image'
 
 interface PostType {
   id: string
@@ -91,7 +92,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
     <div className={'bg-white my-7 border rounded-sm'}>
       {/*Header*/}
       <div className={'flex items-center p-5'}>
-        <img src={avatar} alt="avatar" className={'rounded-full h-12 w-12 border p-1 mr-3'}/>
+        <Image src={avatar} alt="avatar" width={50} height={50} className={'rounded-full h-12 w-12 object-cover border p-1 mr-3'}/>
         <p className={'flex-1 font-bold'}>{username}</p>
 
         <EllipsisHorizontalIcon className={'h-5'}/>
@@ -132,7 +133,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
         <div className={'ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin'}>
           {cmts.map(c => (
             <div key={c.id} className={'flex items-center space-x-2 mb-3'}>
-              <img src={c.data().userImage} alt='' className={'h-7 rounded-full'}/>
+              <Image src={c.data().userImage} alt='' width={50} height={50} className={'h-7 w-7 object-fit rounded-full'}/>
               <p className={'text-sm flex-1'}>
                 <span className={'font-bold'}>{c.data().username}</span>{' '}{c.data().comment}
               </p>
