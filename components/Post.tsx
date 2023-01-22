@@ -67,15 +67,13 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
 
   const likePost = async() => {
     if (hasLiked) {
-      if ('user' in session) {
+      if (session) {
         await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid))
       }
     } else {
-      if ('user' in session) {
-        await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
-          username: session.user.username
-        })
-      }
+      await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
+        username: session.user.username
+      })
     }
   }
 
