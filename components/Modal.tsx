@@ -15,7 +15,7 @@ import {ref, getDownloadURL, uploadString} from '@firebase/storage'
 function Modal() {
   const {data: session} = useSession()
   const [open, setOpen] = useRecoilState(modalState)
-  const filePickerRef = useRef(null)
+  const filePickerRef = useRef<HTMLInputElement | null>(null)
   const captionRef = useRef<HTMLInputElement | null>(null)
   const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
@@ -116,7 +116,7 @@ function Modal() {
                   />
                 ) : (
                   <div
-                    onClick={() => filePickerRef.current.click()}
+                    onClick={() => filePickerRef.current?.click()}
                     className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 cursor-pointer"
                   >
                     <CameraIcon
