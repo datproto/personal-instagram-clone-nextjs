@@ -49,7 +49,7 @@ function Modal() {
 
     setOpen(false)
     setLoading(false)
-    setSelectedFile(null)
+    setSelectedFile('')
   }
 
   const addImageToPost = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +108,7 @@ function Modal() {
                 {selectedFile ? (
                   <Image
                     src={selectedFile}
-                    onClick={() => setSelectedFile(null)}
+                    onClick={() => setSelectedFile('')}
                     height={720}
                     width={1024}
                     alt=''
