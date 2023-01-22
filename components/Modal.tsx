@@ -16,7 +16,7 @@ function Modal() {
   const {data: session} = useSession()
   const [open, setOpen] = useRecoilState(modalState)
   const filePickerRef = useRef(null)
-  const captionRef = useRef(null)
+  const captionRef = useRef('')
   const [loading, setLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState<any | null>( null)
 
