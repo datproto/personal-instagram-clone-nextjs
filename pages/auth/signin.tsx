@@ -5,11 +5,13 @@ import {OAuthProviderType, ProviderType} from 'next-auth/providers'
 
 interface CustomProviderType {
   providers: {
-    name: string
-    id: string
-    callbackUrl: string
-    signinUrl: string
-    type: string
+    provider: {
+      name: string
+      id: string
+      callbackUrl: string
+      signinUrl: string
+      type: string
+    }
   }
 }
 
