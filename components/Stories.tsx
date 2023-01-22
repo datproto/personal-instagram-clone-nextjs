@@ -2,9 +2,21 @@ import React, {useEffect, useState} from 'react'
 import {faker} from '@faker-js/faker'
 import Story from '@/components/Story'
 
+interface StoriesType {
+  id: number
+  name: string
+  username: string
+  avatar: string
+  email: string
+  company: {
+    name: string
+  }
+  phone: string
+  website: string
+}
 function Stories() {
 
-  const [suggestions, setSuggestions] = useState([])
+  const [suggestions, setSuggestions] = useState<StoriesType[]>([])
 
   useEffect(() => {
     const suggestions = [...Array(20)].map((_, i) => ({
