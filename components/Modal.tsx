@@ -19,7 +19,7 @@ function Modal() {
   const captionRef = useRef<HTMLInputElement | null>(null)
   const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<string | null>( null)
+  const [selectedFile, setSelectedFile] = useState<string>('')
 
   const uploadPost = async () => {
     if (loading) return
