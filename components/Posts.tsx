@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import Post from '@/components/Post'
 
 import {faker} from '@faker-js/faker'
-import {collection, onSnapshot, orderBy, query} from '@firebase/firestore'
+import {collection, onSnapshot, orderBy, query, QueryDocumentSnapshot} from '@firebase/firestore'
 import {db} from '@/firebase'
 
 function Posts() {
 
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<QueryDocumentSnapshot[]>([])
 
   useEffect(() => {
     return onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), snapshot => {
