@@ -1,5 +1,6 @@
 import {getProviders, signIn as signIntoProvider} from 'next-auth/react'
 import Header from '@/components/Header'
+import Image from 'next/image'
 
 function signIn({providers}) {
   return (
@@ -7,7 +8,7 @@ function signIn({providers}) {
       <Header/>
 
       <div className={'flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center'}>
-        <img src="https://links.papareact.com/ocw" alt="" className={'w-80'}/>
+        <Image src="https://links.papareact.com/ocw" height={285} width={800} alt="" className={'w-80 h-auto object-contain'}/>
 
         <p className={'font-xs italic'}>
           This is not a REAL app, this is just a clone of Instagram, which is built for educational purpose only

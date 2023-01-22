@@ -19,7 +19,7 @@ import {
   doc,
   onSnapshot,
   orderBy,
-  query,
+  query, QueryDocumentSnapshot,
   serverTimestamp,
   setDoc
 } from '@firebase/firestore'
@@ -39,7 +39,7 @@ interface PostType {
 function Post({id, username, avatar, postTitle, postImg, postContent}: PostType) {
   const {data: session} = useSession()
   const [cmt, setCmt] = useState('')
-  const [cmts, setCmts] = useState([])
+  const [cmts, setCmts] = useState<QueryDocumentSnapshot[]>([])
   const [likes, setLikes] = useState([])
   const [hasLiked, setHasLiked] = useState(false)
 
@@ -48,8 +48,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
       collection(
         db, 'posts', id, 'comments'),
       orderBy('timestamp', 'desc')),
-      snapshot => setCmts((snapshot.docs)
-      )
+      snapshot => setCmts((snapshot.docs))
     ), [db, id])
 
   useEffect(() => onSnapshot(
@@ -58,7 +57,9 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
 
   useEffect(() => {
     setHasLiked(
-      likes.findIndex(like => like.id === session?.user?.uid) !== -1
+      likes.findIndex(like => {
+        return like.id === session?.user?.uid
+      }) !== -1
     )
   }, [likes])
 

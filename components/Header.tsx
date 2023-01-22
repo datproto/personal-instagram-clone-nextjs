@@ -32,8 +32,8 @@ function Header() {
           <Image
             src={'https://links.papareact.com/ocw'}
             alt={'Instagram logo'}
-            width={200}
-            height={200}
+            width={800}
+            height={285}
             className={'object-contain'}
             priority={true}
           />
