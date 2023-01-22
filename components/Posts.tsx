@@ -5,7 +5,7 @@ import {faker} from '@faker-js/faker'
 import {collection, onSnapshot, orderBy, query} from '@firebase/firestore'
 import {db} from '@/firebase'
 
-function Posts(props) {
+function Posts() {
 
   const [posts, setPosts] = useState([])
 

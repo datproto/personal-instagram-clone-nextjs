@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {faker} from '@faker-js/faker'
 import Story from '@/components/Story'
 
-function Stories(props) {
+function Stories() {
 
   const [suggestions, setSuggestions] = useState([])
 

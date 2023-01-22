@@ -12,7 +12,7 @@ import {addDoc, collection, doc, serverTimestamp, updateDoc} from '@firebase/fir
 import {useSession} from 'next-auth/react'
 import {ref, getDownloadURL, uploadString} from '@firebase/storage'
 
-function Modal(props) {
+function Modal() {
   const {data: session} = useSession()
   const [open, setOpen] = useRecoilState(modalState)
   const filePickerRef = useRef(null)

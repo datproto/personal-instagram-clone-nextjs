@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {faker} from '@faker-js/faker'
 
-function Suggestions(props) {
+function Suggestions() {
   const [suggestions, setSuggestions] = useState([])
 
   useEffect(() => {
