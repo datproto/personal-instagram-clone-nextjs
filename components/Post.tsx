@@ -85,7 +85,7 @@ function Post({id, username, avatar, postTitle, postImg, postContent}: PostType)
     const cmtToSend = cmt
     setCmt('')
 
-    if ('user' in session) {
+    if (session) {
       await addDoc(collection(db, 'posts', id, 'comments'),
         {
           comment: cmtToSend,
