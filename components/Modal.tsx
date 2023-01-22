@@ -31,7 +31,7 @@ function Modal() {
     // TODO 4: Get a download URL from db storage and update the original post with image
 
     const docRef = await addDoc(collection(db, 'posts'), {
-      username: session?.user && session.user.username,
+      username: session?.user && session.user.name,
       caption: captionRef.current.value,
       profileImg: session?.user && session.user.image,
       timestamp: serverTimestamp()
