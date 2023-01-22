@@ -16,7 +16,7 @@ function Modal() {
   const {data: session} = useSession()
   const [open, setOpen] = useRecoilState(modalState)
   const filePickerRef = useRef(null)
-  const captionRef = useRef(null) as MutableRefObject<HTMLInputElement>
+  const captionRef = useRef<HTMLInputElement | null>(null)
   const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState<any | null>( null)
@@ -33,7 +33,7 @@ function Modal() {
 
     const docRef = await addDoc(collection(db, 'posts'), {
       username: session?.user && session.user.name,
-      caption: captionRef.current.value,
+      caption: captionRef.current?.value,
       profileImg: session?.user && session.user.image,
       timestamp: serverTimestamp()
     })
